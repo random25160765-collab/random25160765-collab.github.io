@@ -22,9 +22,16 @@ export default function remarkD2() {
           value: `<div class="d2-diagram">${svg.trim()}</div>`,
         });
       } catch (err) {
-        console.error(
-          `[remark-d2] Failed to render D2 diagram: ${err instanceof Error ? err.message : err}`,
-        );
+        const msg = err instanceof Error ? err.message : String(err);
+        console.error(`[remark-d2] Failed to render D2 diagram: ${msg}`);
+
+        // Replace code block with an error notice so readers don't see raw D2 source
+        parent.children.splice(index, 1, {
+          type: "html",
+          value: `<div class="d2-diagram" style="border:2px dashed #c00;padding:1rem;color:#c00;text-align:center">
+            <strong>图表渲染失败</strong><br/><small>${msg}</small>
+          </div>`,
+        });
       }
     });
   };
