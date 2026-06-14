@@ -107,6 +107,51 @@ import ResponsiveTable from "@/components/ResponsiveTable.astro";
 </ResponsiveTable>
 ```
 
+### 流程图 / 图表
+
+**默认使用 D2**，不要用 Mermaid。原因：Mermaid 需要浏览器端 JS 渲染（依赖 CDN，网络不通），而 D2 在构建时通过 `remark-d2` 插件直接渲染为 SVG。
+
+````md
+```d2
+direction: right
+
+vpu: VPU / QEMU 设备
+vpu -> fast: fast_ring
+fast: "fast_fd\n指令 trace 高频"
+fast -> probe
+probe: "Unix Socket\nprobe.c"
+```
+````
+
+**Mermaid 转换规则**：如果原始内容包含 Mermaid 图表，应转换为 D2 格式再写入文章。基本映射：
+
+| Mermaid | D2 |
+|---------|-----|
+| `flowchart LR` | `direction: right` |
+| `A[Label]` | `a: Label` |
+| `A -->|label| B` | `a -> b: label` |
+| `A["multi<br/>line"]` | `a: "multi\nline"` |
+| `A --> B` + `B --> C` | `a -> b -> c` |
+
+常用 D2 写法：
+```d2
+direction: right
+
+# 节点定义
+a: Node A
+b: Node B {
+  shape: class     # 矩形框
+}
+
+# 连接
+a -> b: edge label
+a -> c: { label: "multi\nline" }
+
+# 方向
+a -> b              # 右
+a -- b              # 无方向
+```
+
 ## 常用命令
 
 ```bash
