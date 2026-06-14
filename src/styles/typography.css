@@ -93,6 +93,19 @@
     pre {
       @apply focus-visible:outline-accent focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-dashed;
     }
+
+    /* Katex */
+    .katex-display {
+      @apply text-foreground;
+    }
+
+    /* D2 diagram */
+    .d2-diagram {
+      @apply flex justify-center my-4;
+    }
+    .d2-diagram svg {
+      @apply max-w-full h-auto;
+    }
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
