@@ -2,7 +2,7 @@
 title: "从 cmodel 说开来"
 author: "rd"
 description: "从 GPU cmodel 的性能优化出发，聊到 Vortex/POCL 桥接踩坑，再到可观测系统的搭建——围绕'怎么让软件模拟器更快、更好用、更可理解'展开的三个技术探索。"
-pubDatetime: 2026-06-15T01:43:00Z
+pubDatetime: 2026-06-14T00:00:00Z
 tags:
   - QEMU
   - GPU
