@@ -3,8 +3,8 @@ import { defineAstroPaperConfig } from "./src/types/config";
 export default defineAstroPaperConfig({
   site: {
     url: "https://random25160765-collab.github.io",
-    title: "random25160765",
-    description: "欢迎来到我的博客",
+    title: "rd",
+    description: "rd的博客",
     author: "random25160765",
     profile: "https://github.com/random25160765-collab",
     ogImage: "default-og.jpg",
@@ -19,7 +19,7 @@ export default defineAstroPaperConfig({
   },
   features: {
     lightAndDarkMode: true,
-    dynamicOgImage: false,
+    dynamicOgImage: true,
     showArchives: true,
     showBackButton: true,
     editPost: {
