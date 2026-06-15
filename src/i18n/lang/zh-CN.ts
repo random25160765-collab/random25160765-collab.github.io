@@ -5,6 +5,7 @@ export default {
     home: "首页",
     posts: "文章",
     tags: "标签",
+    series: "文集",
     about: "关于",
     archives: "归档",
     search: "搜索",
@@ -52,6 +53,12 @@ export default {
 
     searchTitle: "搜索",
     searchDesc: "搜索文章...",
+
+    seriessTitle: "文集",
+    seriessDesc: "所有文章系列。",
+
+    seriesTitle: "文集",
+    seriesDesc: "该文集下的所有文章。",
   },
   a11y: {
     skipToContent: "跳转到内容",

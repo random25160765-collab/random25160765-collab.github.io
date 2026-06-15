@@ -5,6 +5,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Datetime from "@/components/Datetime.astro";
 import Tag from "@/components/Tag.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { getPostSlug, getPostUrl } from "@/utils/getPostPaths";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { slugifyStr } from "@/utils/slugify";
@@ -69,6 +70,7 @@ const {
   timezone,
   tags,
   hideEditPost,
+  series,
 } = post.data;
 
 const { Content } = await render(post);
@@ -131,6 +133,19 @@ const ogImage = ogImageUrl
       </span>
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
+
+    {
+      series && (
+        <div class="my-1">
+          <a
+            href={getRelativeLocaleUrl(locale, `series/${series}/`)}
+            class="text-accent text-sm font-medium hover:underline"
+          >
+            📂 {series}
+          </a>
+        </div>
+      )
+    }
 
     <article
       id="article"

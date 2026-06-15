@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPathsOptions } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Card from "@/components/Card.astro";
+import Footer from "@/components/Footer.astro";
+import Pagination from "@/components/Pagination.astro";
+import { getUniqueSeries } from "@/utils/getSeries";
+import { postFilter } from "@/utils/postFilter";
+import { useTranslations } from "@/i18n";
+import config from "@/config";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = await getCollection("posts");
+  const filtered = posts.filter(postFilter);
+  const allSeries = getUniqueSeries(posts);
+
+  return allSeries.flatMap(({ series }) => {
+    const seriesPosts = filtered
+      .filter(post => post.data.series === series)
+      .sort((a, b) => {
+        const orderA = a.data.seriesOrder;
+        const orderB = b.data.seriesOrder;
+        // posts with seriesOrder come first, sorted ascending
+        if (orderA !== undefined && orderB !== undefined) {
+          return orderA - orderB;
+        }
+        if (orderA !== undefined) return -1;
+        if (orderB !== undefined) return 1;
+        // fallback: by pubDatetime descending
+        return (
+          new Date(b.data.pubDatetime).getTime() -
+          new Date(a.data.pubDatetime).getTime()
+        );
+      });
+
+    return paginate(seriesPosts, {
+      params: { slug: series },
+      props: { seriesName: series },
+      pageSize: config.posts.perPage,
+    });
+  });
+}
+
+const { page, seriesName } = Astro.props;
+
+const locale = Astro.currentLocale ?? config.site.lang;
+const t = useTranslations(locale);
+---
+
+<Layout title={`${t.pages.seriesTitle}: ${seriesName} | ${config.site.title}`}>
+  <Header />
+  <Breadcrumb />
+  <Main
+    pageTitle={`${t.pages.seriesTitle}: ${seriesName}`}
+    pageDesc={`${t.pages.seriesDesc}`}
+  >
+    <ul>
+      {page.data.map(data => <Card {...data} />)}
+    </ul>
+  </Main>
+  <Pagination {page} />
+  <Footer noMarginTop={page.lastPage > 1} />
+</Layout>
