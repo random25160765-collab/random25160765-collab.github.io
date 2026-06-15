@@ -4,6 +4,7 @@ import {
   fontProviders,
   svgoOptimizer,
 } from "astro/config";
+import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
@@ -24,6 +25,7 @@ import config from "./astro-paper.config";
 
 export default defineConfig({
   site: config.site.url,
+  adapter: vercel(),
   integrations: [
     mdx(),
     sitemap({
@@ -71,37 +73,37 @@ export default defineConfig({
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/inter-latin-300-normal.ttf"],
+            src: ["./src/assets/fonts/inter-latin-300-normal.woff2"],
             weight: "300",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-400-normal.ttf"],
+            src: ["./src/assets/fonts/inter-latin-400-normal.woff2"],
             weight: "400",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-400-italic.ttf"],
+            src: ["./src/assets/fonts/inter-latin-400-italic.woff2"],
             weight: "400",
             style: "italic",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-500-normal.ttf"],
+            src: ["./src/assets/fonts/inter-latin-500-normal.woff2"],
             weight: "500",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-600-normal.ttf"],
+            src: ["./src/assets/fonts/inter-latin-600-normal.woff2"],
             weight: "600",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-700-normal.ttf"],
+            src: ["./src/assets/fonts/inter-latin-700-normal.woff2"],
             weight: "700",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-700-italic.ttf"],
+            src: ["./src/assets/fonts/inter-latin-700-italic.woff2"],
             weight: "700",
             style: "italic",
           },

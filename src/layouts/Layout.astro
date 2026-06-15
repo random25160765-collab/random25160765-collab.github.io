@@ -6,6 +6,7 @@ import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
 import config from "@/config";
 import "@/styles/global.css";
+import "katex/dist/katex.min.css";
 
 type Props = {
   title?: string;
@@ -44,11 +45,7 @@ const rssHref = getRelativeLocaleUrl(
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- KaTeX -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
-    />
+    <!-- KaTeX CSS is self-hosted (imported in frontmatter) -->
 
     <!-- Font -->
     <Font
