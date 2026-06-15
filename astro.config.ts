@@ -34,9 +34,6 @@ export default defineConfig({
   i18n: {
     locales: ["zh-CN", "en"],
     defaultLocale: "zh-CN",
-    routing: {
-      prefixDefaultLocale: false,
-    },
   },
   markdown: {
     processor: unified({
@@ -71,37 +68,37 @@ export default defineConfig({
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/inter-latin-300-normal.woff2"],
+            src: ["./src/assets/fonts/inter-latin-300-normal.ttf"],
             weight: "300",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-400-normal.woff2"],
+            src: ["./src/assets/fonts/inter-latin-400-normal.ttf"],
             weight: "400",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-400-italic.woff2"],
+            src: ["./src/assets/fonts/inter-latin-400-italic.ttf"],
             weight: "400",
             style: "italic",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-500-normal.woff2"],
+            src: ["./src/assets/fonts/inter-latin-500-normal.ttf"],
             weight: "500",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-600-normal.woff2"],
+            src: ["./src/assets/fonts/inter-latin-600-normal.ttf"],
             weight: "600",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-700-normal.woff2"],
+            src: ["./src/assets/fonts/inter-latin-700-normal.ttf"],
             weight: "700",
             style: "normal",
           },
           {
-            src: ["./src/assets/fonts/inter-latin-700-italic.woff2"],
+            src: ["./src/assets/fonts/inter-latin-700-italic.ttf"],
             weight: "700",
             style: "italic",
           },
