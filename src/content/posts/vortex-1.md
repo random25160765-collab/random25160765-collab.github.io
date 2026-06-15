@@ -10,6 +10,8 @@ tags:
   - Vortex
   - C++
 description: "Vortex SimX 仿真引擎基础框架源码解读，包含 SimObject、SimPort、SimEvent 和 SimPlatform 的设计分析。"
+series: "vortex"
+seriesOrder: 1
 ---
 
 > [!NOTE] 主要贡献者
