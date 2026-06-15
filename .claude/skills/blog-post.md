@@ -1,3 +1,8 @@
+---
+name: blog-post
+description: 撰写及润色博客文章，涵盖 AstroPaper v6 全部内容格式能力（Callout、D2 图表、代码高亮、LaTeX 公式、ResponsiveTable、MDX 组件等）。
+---
+
 # Blog Post Writing Skill
 
 撰写及润色博客文章时遵循以下规范。该规范覆盖了 AstroPaper v6 框架支持的全部内容格式能力。
