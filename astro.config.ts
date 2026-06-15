@@ -34,14 +34,17 @@ export default defineConfig({
   i18n: {
     locales: ["zh-CN", "en"],
     defaultLocale: "zh-CN",
+    routing: {
+      prefixDefaultLocale: false,
+    },
   },
   markdown: {
     processor: unified({
       remarkPlugins: [
         remarkD2,
         remarkMath,
-        remarkToc,
-        [remarkCollapse, { test: "Table of contents" }],
+        [remarkToc, { heading: "目录|table of contents" }],
+        [remarkCollapse, { test: "Table of contents|目录", summary: (str: string) => str }],
       ],
       rehypePlugins: [rehypeKatex, rehypeCallouts],
     }),
