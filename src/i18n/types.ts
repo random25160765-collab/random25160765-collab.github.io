@@ -66,4 +66,7 @@ export interface UIStrings {
     message: string;
     goHome: string;
   };
+  lang: {
+    switch: string;
+  };
 }

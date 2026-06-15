@@ -68,4 +68,7 @@ export default {
     message: "Page Not Found",
     goHome: "Go back home",
   },
+  lang: {
+    switch: "中",
+  },
 } satisfies UIStrings;

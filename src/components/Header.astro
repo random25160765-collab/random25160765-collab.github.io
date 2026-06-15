@@ -8,6 +8,7 @@ import IconSearch from "@/assets/icons/IconSearch.svg";
 import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconX from "@/assets/icons/IconX.svg";
 import LinkButton from "./LinkButton.astro";
+import T from "./T.astro";
 import { stripBase, stripLocale } from "@/utils/withBase";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
@@ -79,7 +80,7 @@ const isActive = (path: string) => {
             href={getRelativeLocaleUrl(locale, "posts")}
             class:list={{ "active-nav": isActive("/posts") }}
           >
-            {t.nav.posts}
+            <T key="nav.posts" text={t.nav.posts} />
           </a>
         </li>
         <li class="col-span-2">
@@ -87,7 +88,7 @@ const isActive = (path: string) => {
             href={getRelativeLocaleUrl(locale, "tags")}
             class:list={{ "active-nav": isActive("/tags") }}
           >
-            {t.nav.tags}
+            <T key="nav.tags" text={t.nav.tags} />
           </a>
         </li>
         <li class="col-span-2">
@@ -95,7 +96,7 @@ const isActive = (path: string) => {
             href={getRelativeLocaleUrl(locale, "about")}
             class:list={{ "active-nav": isActive("/about") }}
           >
-            {t.nav.about}
+            <T key="nav.about" text={t.nav.about} />
           </a>
         </li>
         {
@@ -111,7 +112,7 @@ const isActive = (path: string) => {
                 aria-label={t.nav.archives}
               >
                 <IconArchive class="hidden sm:absolute sm:top-1/2 sm:left-1/2 sm:block sm:size-6 sm:-translate-x-1/2 sm:-translate-y-1/2" />
-                <span class="sm:sr-only">{t.nav.archives}</span>
+                <span class="sm:sr-only"><T key="nav.archives" text={t.nav.archives} /></span>
                 {isActive("/archives") && (
                   <IconUnderline
                     aria-hidden="true"
@@ -132,7 +133,7 @@ const isActive = (path: string) => {
                 aria-label={t.nav.search}
               >
                 <IconSearch class="absolute top-1/2 left-1/2 size-6 -translate-x-1/2 -translate-y-1/2" />
-                <span class="sr-only">{t.nav.search}</span>
+                <span class="sr-only"><T key="nav.search" text={t.nav.search} /></span>
                 {isActive("/search") && (
                   <IconUnderline
                     aria-hidden="true"
@@ -159,6 +160,16 @@ const isActive = (path: string) => {
             </li>
           )
         }
+        <li class="col-span-1 flex items-center justify-center">
+          <button
+            id="lang-btn"
+            class="focus-outline hover:text-accent flex size-8 items-center justify-center rounded text-xs font-semibold tracking-wide transition-colors"
+            title="Switch language / 切换语言"
+            aria-label="Switch language / 切换语言"
+          >
+            <span data-i18n="lang.switch">中</span>
+          </button>
+        </li>
       </ul>
     </nav>
   </div>
@@ -192,4 +203,20 @@ const isActive = (path: string) => {
   toggleNav();
 
   document.addEventListener("astro:after-swap", toggleNav);
+
+  // Language switcher
+  document.querySelector("#lang-btn")?.addEventListener("click", () => {
+    const el = document.documentElement;
+    const current = localStorage.getItem("lang") || el.lang || "zh-CN";
+    const next = current === "zh-CN" ? "en" : "zh-CN";
+    localStorage.setItem("lang", next);
+    const strings = (window as any).__I18N?.[next] ?? (window as any).__I18N?.["zh-CN"];
+    if (strings) {
+      el.lang = next;
+      document.querySelectorAll("[data-i18n]").forEach((span: any) => {
+        const key = span.dataset.i18n;
+        if (strings[key]) span.textContent = strings[key];
+      });
+    }
+  });
 </script>

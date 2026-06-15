@@ -68,4 +68,7 @@ export default {
     message: "页面未找到",
     goHome: "返回首页",
   },
+  lang: {
+    switch: "EN",
+  },
 } satisfies UIStrings;
